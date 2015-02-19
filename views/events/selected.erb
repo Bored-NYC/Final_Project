@@ -1,5 +1,4 @@
 <html>
-<html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -18,9 +17,16 @@
   }
   h1{
     font-family: 'Raleway', sans-serif;
-    font-weight: 700;
+    font-weight: 400;
     color:white;
     text-shadow: 0 5px 10px #808080;
+  }
+  .brand{
+    font-family: 'Poiret One', cursive;
+    font-weight:bold;
+    color:#696969;
+    text-shadow: 0 5px 10px #808080;
+    font-size:60px;
   }
   h3{
     font-family: 'Poiret One', cursive;
@@ -31,11 +37,11 @@
     font-weight:bold;
   }
   body{
-    background-color:#ff7900;
+    background-color:#74AFAD;
   }
   button{
     color:white;
-    background-color:#C0C0C0;
+    background-color:#ff7900;
     border-radius:5px;
     font-size:15px;
   }
@@ -46,7 +52,7 @@
   }
   .fliterbutton{
     color:black;
-    background-color:#C0C0C0;
+    background-color:#ff7900;
     border-radius:5px;
   }
   .logout{
@@ -66,9 +72,11 @@
 <body>
 
   <div class="container">
-
     <div class="row">
-      <div class="col-md-2 col-md-offset-10">
+      <div class="col-md-10">
+        <h1 class="brand"> Bored-NYC </h1>
+      </div>
+      <div class="col-md-2">
         <form class="logout" action='/logout' method="POST">
           <input type="hidden" name="_method" value="PUT">
           <button>Log out</button>
@@ -89,7 +97,7 @@
         <input type="hidden" name="detail" value="<%= object['event_detail_url']%>">
         <input type="hidden" name="description" value="<%= object['web_description']%>">
         <input type="hidden" name="date" value="<%= object['date_time_description']%>">
-        <h1><%= object["event_name"] %></h1>
+        <h2><%= object["event_name"] %></h2>
         <p>Located:<br>
           <%= object["street_address"] %><br>
           <%= object["city"] %>
@@ -101,6 +109,16 @@
         <p>Event Description: <%= object["web_description"] %></p>
         <p>Available Dates: <%= object["date_time_description"] %></p><br>
         <button>Save this Event</button>
+        <!-- <hr> -->
+      </form>
+      <form action="/map" method="POST">
+        <input type="hidden" name="name" value="<%= object['event_name'] %>">
+        <input type="hidden" name="address" value="<%= object['street_address'] %>">
+        <input type="hidden" name="city" value="<%= object['city'] %>">
+        <input type="hidden" name="state" value="<%= object['state'] %>">
+        <input type="hidden" name="lat" value="<%= object['geocode_latitude'] %>">
+        <input type="hidden" name="long" value="<%= object['geocode_longitude'] %>">
+        <button>Map it</button>
         <hr>
       </form>
       <% end %>

@@ -4,13 +4,14 @@ require 'httparty'
 require 'pry'
 require 'sqlite3'
 require 'active_record'
-require 'bcrypt'
 require 'json'
+require 'bcrypt'
 require_relative './lib/connection'
 require_relative './lib/favorites'
 require_relative './lib/user'
 require_relative './lib/dailyevents'
 require_relative './methods/methods.rb'
+
 
 # Create >> -user
 # Read >> -events multiple -favorites list
@@ -24,6 +25,7 @@ use Rack::Session::Pool, :cookie_only => false
 after do
   ActiveRecord::Base.connection.close
 end
+
 
 #login
 get '/' do
@@ -62,8 +64,8 @@ end
 #after login
 get '/events' do
   if authenticated?
-    response = events_call['results']
-    erb(:'events/index', {locals: { response: response }})
+    response = events_call(@@api_key)
+    erb(:'events/index', {locals: { response: response['results'] }})
   else
     redirect '/login'
   end
@@ -97,12 +99,12 @@ post '/save' do
       evt_lat: params[:lat],
       evt_long: params[:long],
       favorite_id: favorite_list.id
-      }
+    }
     Dailyevent.create(new_evt)
-     redirect '/favorite'
-   else
-     redirect '/login'
-   end
+    redirect '/favorite'
+  else
+    redirect '/login'
+  end
 end
 
 #remove event
