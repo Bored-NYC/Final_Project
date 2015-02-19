@@ -5,7 +5,7 @@ gem "sinatra"
 gem "unicorn"
 
 
-gem 'sinatra/reloader'
+gem 'sinatra-reloader'
 gem 'httparty'
 gem 'pry'
 gem 'sqlite3'
