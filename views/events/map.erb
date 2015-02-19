@@ -1,0 +1,74 @@
+<html>
+
+  <head>
+    <style>
+    #map {
+      height: 600px;
+      width: 800px
+    }
+    span {
+      visibility: hidden;
+    }
+    </style>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize(){
+        var mapMarker ={
+          url: "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/256/Map-Marker-Flag-2-Right-Azure-icon.png";
+        }
+
+        var getLat = document.querySelector("#lat").innerHTML;
+        var getLong = document.querySelector("#long").innerHTML;
+
+        var lat = parseFloat(getLat);
+        var long = parseFloat(getLong);
+
+        var displayMap = {
+        center : new google.maps.LatLng(lat, long),
+        zoom : 14,
+        mapTypeId : google.maps.MapTypeId.ROADMAP
+        };
+
+        var marker = new google.maps.Marker({
+          position: myCenter,
+          icon: floatingJames
+        });
+        var map = new google.maps.Map(document.getElementById("map"), displayMap);
+        marker.setMap(displayMap);
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="col-md-2 col-md-offset-10">
+        <form class="logout" action='/logout' method="POST">
+          <input type="hidden" name="_method" value="PUT">
+          <button>Log out</button>
+        </form>
+        <a class="list" href='/favorite'>My Favorite List</a>
+      </div>
+    </div>
+    <a id="pre_page" href='/events'>Back to Events</a>
+    <div>
+      <p><%= object[:address] %><br>
+      <%= object[:city] %>, <%= object[:state] %></p>
+    </div>
+
+    <span id="lat"><%= object[:lat] %></span>
+    <span id="long"><%= object[:long] %></span>
+
+    <div id="map">
+    </div>
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,40 @@
+<html>
+  <head>
+
+  </head>
+
+  <body>
+    <div id="container">
+
+      <form action='/logout' method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <button>Log out</button>
+      </form>
+
+      <h1> <%= username['firstname'] %> List of Events: </h1>
+
+      <% faves.each do |fav| %>
+        <h2>Event: <%= fav.evt_name %></h2>
+        <p>
+          Located:<br>
+          <%= fav.evt_address %><br>
+          <%= fav.evt_city %>, <%= fav.evt_state %><br>
+          <%= fav.evt_phone %><br>
+          <a href="<%= fav.evt_detail_url %>">Event detail</a></p>
+
+          <p>Event Description: <%= fav.evt_description %></p>
+          <p>Dates Available: <%= fav.evt_date %></p>
+
+          <form action='/remove' method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="eventname" value="<%= fav['evt_name'] %>">
+            <button>Delete Event</button>
+          </form>
+      <% end %>
+
+      <a href='/events'>Back to Events</a>
+
+    </div>
+  </body>
+
+</html>
