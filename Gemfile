@@ -9,7 +9,7 @@ gem 'sinatra-reloader'
 gem 'httparty'
 gem 'pry'
 gem 'sqlite3'
-gem 'active_record'
+gem 'activerecord'
 gem 'json'
 gem 'bcrypt'
 
