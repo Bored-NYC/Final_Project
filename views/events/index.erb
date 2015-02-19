@@ -100,6 +100,8 @@
       <input type="hidden" name="detail" value="<%= object['event_detail_url'] %>">
       <input type="hidden" name="description" value="<%= object['web_description'] %>">
       <input type="hidden" name="date" value="<%= object['date_time_description'] %>">
+      <input type="hidden" name="lat" value="<%= object['geocode_latitude'] %>">
+      <input type="hidden" name="long" value="<%= object['geocode_longitude'] %>">
       <h2><%= object["event_name"] %></h2>
       <p>Located:</br>
         <%= object["street_address"] %><br>

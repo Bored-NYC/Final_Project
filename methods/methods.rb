@@ -1,11 +1,16 @@
-require 'json'
-#for the nytimes API our main query event -> comedy
-File.open('secret.json', 'r') do |f|
-  f.each_line do |line|
+
+json = ''
+
+File.open('./secret.json', 'r') do |key|
+  key.each_line do |line|
     json << line
   end
 end
 
+@@api_key = JSON.parse(json)
+
+
+#for the nytimes API our main query event -> comey and ballet
 def comedy_uri
   comedy_uri = "http://api.nytimes.com/svc/events/v2/listings.json?filters=category%3AComedy&date_range="
 end
@@ -26,18 +31,18 @@ end
 
 #google map api call
 def map_call(lat, long)
-  location = google_map + lat + "," + long + "&zoom=14&size=600x800" + api_key[:map_key]
+  location = google_map + lat + "," + long + "&zoom=14&size=600x800" + @@api_key["map_key"]
 end
 
 #our api call for daily events for the main index page
-def events_call
-  url_call = dance_uri + current_date + api_key[:api_key]
+def events_call(api_key)
+  url_call = dance_uri + current_date + api_key["api_key"]
   response = HTTParty.get(url_call)
 end
 
 #filter option for events range
 def date_filter(date)
-  url_call = dance_uri + date + "%3A" + date + api_key[:api_key]
+  url_call = dance_uri + date + "%3A" + date + @@api_key["api_key"]
   response = HTTParty.get(url_call)
 end
 
