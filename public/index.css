@@ -1,0 +1,74 @@
+form{
+  font-size:20px;
+  font-family: 'Raleway', sans-serif;
+  color:white;
+}
+
+h2{
+  font-family: 'Poiret One', cursive;
+  color:white;
+  text-shadow: 0 5px 10px #808080;
+}
+
+h1{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  color:white;
+  text-shadow: 0 5px 10px #808080;
+}
+
+.brand{
+  font-family: 'Poiret One', cursive;
+  font-weight:bold;
+  color:#696969;
+  text-shadow: 0 5px 10px #808080;
+  font-size:60px;
+}
+
+h3{
+  font-family: 'Poiret One', cursive;
+  font-weight:bold;
+  color:white;
+}
+
+a{
+  font-weight:bold;
+}
+
+body{
+  background-color:#74AFAD;
+  /*this is change color*/
+
+}
+
+button{
+  color:white;
+  background-color:#ff7900;
+  border-radius:5px;
+  font-size:15px;
+  /*this is change color*/
+}
+
+.fliter{
+  background-color:#C0C0C0;
+  border-radius:5px;
+  color:black;
+  /*this is change color*/
+}
+
+.fliterbutton{
+  color:white;
+  background-color:#ff7900;
+  border-radius:5px;
+  /*this is change color*/
+}
+
+.logout{
+  margin-top:20px;
+  font-size:14px;
+}
+
+.list{
+  margin-top:20px;
+  font-size:18px;
+}

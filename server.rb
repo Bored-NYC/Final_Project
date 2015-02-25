@@ -6,12 +6,12 @@ require 'sqlite3'
 require 'active_record'
 require 'json'
 require 'bcrypt'
+require 'unicorn'
 require_relative './lib/connection'
 require_relative './lib/favorites'
 require_relative './lib/user'
 require_relative './lib/dailyevents'
 require_relative './methods/methods.rb'
-
 
 # Create >> -user
 # Read >> -events multiple -favorites list
@@ -89,7 +89,6 @@ post '/save' do
     favorite_list = Favorite.find_by(user_id: session[:id])
     new_evt = {
       evt_name: params[:name],
-      evt_detail_url: params[:detail],
       evt_description: params[:description],
       evt_address: params[:address],
       evt_city: params[:city],
@@ -99,12 +98,12 @@ post '/save' do
       evt_lat: params[:lat],
       evt_long: params[:long],
       favorite_id: favorite_list.id
-      }
+    }
     Dailyevent.create(new_evt)
-     redirect '/favorite'
-   else
-     redirect '/login'
-   end
+    redirect '/favorite'
+  else
+    redirect '/login'
+  end
 end
 
 #remove event

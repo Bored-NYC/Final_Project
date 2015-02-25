@@ -1,4 +1,3 @@
-
 json = ''
 
 File.open('./secret.json', 'r') do |key|
@@ -8,7 +7,6 @@ File.open('./secret.json', 'r') do |key|
 end
 
 @@api_key = JSON.parse(json)
-
 
 #for the nytimes API our main query event -> comey and ballet
 def comedy_uri
